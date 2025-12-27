@@ -4,6 +4,11 @@ published: 2025-12-27
 description: "A first-principles exploration of the FASTQ format using my whole genome sequencing data"
 ---
 
+<figure>
+    <img src="/images/fastq-workflow.jpg" alt="Illustration of DNA sequencing workflow: cheek swab to sequencer to FASTQ files">
+    <figcaption>From cheek swab to FASTQ files (generated with Gemini Nano Banana)</figcaption>
+</figure>
+
 I recently had Whole Genome Sequencing (WGS) performed on my DNA. I swabbed the inside of each of my cheeks with a nylon swab, placed each swab in a collection tube, and mailed those collection tubes off to a lab. A few weeks later, I received four files from the lab:
 
 - sample_R1.fastq.gz - 35.76 GB
