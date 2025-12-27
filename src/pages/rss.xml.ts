@@ -7,6 +7,11 @@ export async function GET(context: { site: URL }) {
     title: 'Connor Luebbehusen',
     description: 'A blog about software and other things',
     site: context.site,
+    customData: `<image>
+      <url>${context.site}/icon.png</url>
+      <title>Connor Luebbehusen</title>
+      <link>${context.site}</link>
+    </image>`,
     items: posts
       .sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf())
       .map((post) => ({

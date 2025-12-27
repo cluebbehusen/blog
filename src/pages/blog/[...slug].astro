@@ -168,13 +168,13 @@ const showUpdated = updated && updated.getTime() !== published.getTime();
   }
 
   .content :global(table) {
-    width: 100%;
+    display: block;
+    overflow-x: auto;
     border-collapse: separate;
     border-spacing: 0;
     margin-bottom: 1.5rem;
     font-size: 0.875rem;
     border-radius: 8px;
-    overflow: hidden;
     border: 1px solid var(--border);
   }
 
