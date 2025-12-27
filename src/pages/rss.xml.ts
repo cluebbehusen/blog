@@ -8,7 +8,7 @@ export async function GET(context: { site: URL }) {
     description: 'A blog about software and other things',
     site: context.site,
     customData: `<image>
-      <url>${context.site}/icon.png</url>
+      <url>${context.site}icon.png</url>
       <title>luebbehusen.dev</title>
       <link>${context.site}</link>
     </image>`,
