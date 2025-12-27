@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" font-weight="600" fill="#e5e5e5">CL</text>
+  <style>
+    @media (prefers-color-scheme: light) {
+      text { fill: #141414; }
+    }
+  </style>
+</svg>

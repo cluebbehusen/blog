@@ -1,0 +1,205 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
+
+const published = post.data.published;
+const updated = post.data.updated;
+const showUpdated = updated && updated.getTime() !== published.getTime();
+---
+
+<BaseLayout title={post.data.title}>
+  <article>
+    <header>
+      <a href="/" class="back">&larr; Back to posts</a>
+      <h1>{post.data.title}</h1>
+      <div class="meta">
+        <time datetime={published.toISOString()}>{formatDate(published)}</time>
+        {showUpdated && (
+          <span class="updated">
+            &middot; Updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time>
+          </span>
+        )}
+      </div>
+    </header>
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  article {
+    max-width: 100%;
+  }
+
+  header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .back:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .updated {
+    color: var(--text-muted);
+  }
+
+  .content {
+    line-height: 1.8;
+    color: var(--text-secondary);
+  }
+
+  .content :global(h2) {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 2.5rem 0 1rem;
+  }
+
+  .content :global(h3) {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 2rem 0 0.75rem;
+  }
+
+  .content :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .content :global(ul),
+  .content :global(ol) {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .content :global(pre) {
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .content :global(code) {
+    font-family: inherit;
+  }
+
+  .content :global(:not(pre) > code) {
+    background: var(--bg-tertiary);
+    color: var(--accent);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .content :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .content :global(a) {
+    color: var(--accent);
+  }
+
+  .content :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  .content :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+
+  .content :global(img) {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .content :global(strong) {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .content :global(table) {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .content :global(th),
+  .content :global(td) {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .content :global(tr:last-child td) {
+    border-bottom: none;
+  }
+
+  .content :global(th) {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .content :global(td) {
+    background: var(--bg-secondary);
+  }
+
+  .content :global(tr:hover td) {
+    background: var(--bg-tertiary);
+  }
+</style>
