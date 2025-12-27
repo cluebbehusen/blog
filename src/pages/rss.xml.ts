@@ -4,12 +4,12 @@ import { getCollection } from 'astro:content';
 export async function GET(context: { site: URL }) {
   const posts = await getCollection('blog');
   return rss({
-    title: 'Connor Luebbehusen',
+    title: 'luebbehusen.dev',
     description: 'A blog about software and other things',
     site: context.site,
     customData: `<image>
       <url>${context.site}/icon.png</url>
-      <title>Connor Luebbehusen</title>
+      <title>luebbehusen.dev</title>
       <link>${context.site}</link>
     </image>`,
     items: posts
