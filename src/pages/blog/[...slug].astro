@@ -162,6 +162,22 @@ const showUpdated = updated && updated.getTime() !== published.getTime();
     border-radius: 8px;
   }
 
+  .content :global(figure) {
+    margin: 1.5rem 0;
+  }
+
+  .content :global(figure img) {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .content :global(figcaption) {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+  }
+
   .content :global(strong) {
     color: var(--text-primary);
     font-weight: 600;

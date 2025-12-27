@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.14",
+    "@types/markdown-it": "^14.1.2",
     "astro": "^5.16.6",
+    "markdown-it": "^14.1.0",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0"
   }
