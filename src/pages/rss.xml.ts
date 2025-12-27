@@ -13,6 +13,7 @@ export async function GET(context: { site: URL }) {
     description: 'A blog about software and other things',
     site: context.site,
     customData: `<atom:link href="${context.site}rss.xml" rel="self" type="application/rss+xml"/>
+    <managingEditor>connor@luebbehusen.dev (Connor Luebbehusen)</managingEditor>
     <image>
       <url>${context.site}icon.png</url>
       <title>luebbehusen.dev</title>
@@ -30,6 +31,7 @@ export async function GET(context: { site: URL }) {
           description: post.data.description,
           link: `/blog/${post.slug}/`,
           content,
+          author: 'connor@luebbehusen.dev (Connor Luebbehusen)',
         };
       }),
   });
