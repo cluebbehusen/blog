@@ -1,7 +1,7 @@
 ---
 title: "FASTQ from First Principles"
 published: 2025-12-27
-description: "A first-principles exploration of the FASTQ format using my whole-genome sequencing data"
+description: "A first-principles exploration of the FASTQ format using my whole genome sequencing data"
 ---
 
 I recently had Whole Genome Sequencing (WGS) performed on my DNA. I swabbed the inside of each of my cheeks with a nylon swab, placed each swab in a collection tube, and mailed those collection tubes off to a lab. A few weeks later, I received four files from the lab:
