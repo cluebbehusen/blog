@@ -21,7 +21,7 @@ const updated = post.data.updated;
 const showUpdated = updated && updated.getTime() !== published.getTime();
 ---
 
-<BaseLayout title={post.data.title}>
+<BaseLayout title={post.data.title} description={post.data.description} image={post.data.image} published={post.data.published} updated={post.data.updated} isArticle={true}>
   <article>
     <header>
       <a href="/" class="back">&larr; Back to posts</a>
