@@ -2,6 +2,7 @@
 title: "FASTQ from First Principles"
 published: 2025-12-27
 description: "A first-principles exploration of the FASTQ format using my whole genome sequencing data"
+image: "/images/fastq-workflow.jpg"
 ---
 
 <figure>

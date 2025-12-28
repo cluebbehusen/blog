@@ -1,18 +1,68 @@
 ---
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
+  published?: Date;
+  updated?: Date;
+  isArticle?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, description, image, published, updated, isArticle = false } = Astro.props;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const ogImage = image ? `${siteUrl}${image}` : undefined;
+const canonicalUrl = Astro.url.href;
+
+const jsonLd = isArticle && published ? JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "image": ogImage,
+  "datePublished": published.toISOString(),
+  "dateModified": (updated ?? published).toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": "Connor Luebbehusen",
+    "url": siteUrl
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Connor Luebbehusen"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  }
+}) : null;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#141414" />
     <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="application/rss+xml" title="luebbehusen.dev" href="/rss.xml" />
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content={isArticle ? "article" : "website"} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="luebbehusen.dev" />
+    {description && <meta property="og:description" content={description} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {isArticle && published && <meta property="article:published_time" content={published.toISOString()} />}
+    {isArticle && updated && <meta property="article:modified_time" content={updated.toISOString()} />}
+    <!-- Twitter -->
+    {ogImage && <meta name="twitter:card" content="summary_large_image" />}
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    <!-- JSON-LD -->
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
   </head>
   <body>
