@@ -29,7 +29,7 @@ My cheek swabs that arrived at the lab likely contained on the order of several 
 [Adapter A]-[My DNA insert, a few hundred bp]-[Adapter B]
 ```
 
-The lab loaded these fragments onto the sequencer. Then, for each fragment, the sequencer sequences 150 bp[^4] in from each end, one nucleotide at a time—a process that took on the order of one to two days. Each of these 150 bp sequences is known as a "read". Because the sequencer sequences from both ends, each fragment produces two reads: one read starting from adapter A and one starting from adapter B. These two types of reads correspond to the R1 and R2 FASTQ files I received from the lab. One common target for labs is to break fragments into a roughly 300 bp insert size. If the insert is exactly 300 bp, the two reads will cover the insert perfectly. If the insert is larger, base pairs in the middle will not be covered by this read pair; if the insert is shorter, the two reads overlap.
+The lab loaded these fragments onto the sequencer. Then, for each fragment, the sequencer sequenced 150 bp[^4] in from each end, one nucleotide at a time—a process that took on the order of one to two days. Each of these 150 bp sequences is known as a "read". Because the sequencer sequences from both ends, each fragment produces two reads: one read starting from adapter A and one starting from adapter B. These two types of reads correspond to the R1 and R2 FASTQ files I received from the lab. One common target for labs is to break fragments into a roughly 300 bp insert size. If the insert is exactly 300 bp, the two reads will cover the insert perfectly. If the insert is larger, base pairs in the middle will not be covered by this read pair; if the insert is shorter, the two reads overlap.
 
 ## Onto the FASTQ
 
