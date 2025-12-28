@@ -30,7 +30,7 @@ const showUpdated = updated && updated.getTime() !== published.getTime();
         <time datetime={published.toISOString()}>{formatDate(published)}</time>
         {showUpdated && (
           <span class="updated">
-            &middot; Updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time>
+            &middot; Last updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time>
           </span>
         )}
       </div>
